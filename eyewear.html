@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE BEAUTÉ - Ultra Luxury Beauty Maison</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="e.css">
+</head>
+<body>
+    <header>
+        <div class="top-banner">
+            COMPLIMENTARY SHIPPING AND RETURNS ON ALL ORDERS
+        </div>
+        <div class="header-main">
+            <div class="logo">ÉLITE BEAUTÉ</div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Fashion</a></li>
+                    <li><a href="fragrance.html">Fragrance</a></li>
+                    <li><a href="makeup.html">Makeup</a></li>
+                    <li><a href="skincare.html">Skincare</a></li>
+                    <li><a href="eyewear.html">EyeWear</a></li>
+                    <li><a href="watchesandjwellery.html">Watches & Jewelry</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <span class="header-icon" onclick="openSearch()">🔍</span>
+                <span class="header-icon" onclick="openUser()">👤</span>
+                <span class="header-icon" onclick="openCart()">🛒</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <span class="search-close" onclick="closeSearch()">×</span>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput" oninput="performSearch()">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <div class="user-modal" id="userModal">
+        <div class="modal-header">
+            <h2>My Account</h2>
+            <span class="modal-close" onclick="closeUser()">×</span>
+        </div>
+        <div class="modal-content">
+
+            <div id="loginForm">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="userPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Don't have an account? <a href="#" onclick="showRegister(); return false;" style="text-decoration: underline;">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Already have an account? <a href="#" onclick="showLogin(); return false;" style="text-decoration: underline;">Sign In</a>
+                </p>
+            </div>
+
+            <div class="user-info" id="userDashboard">
+                <h3 style="font-size: 18px; letter-spacing: 2px; margin-bottom: 20px;">Welcome, <span id="userName"></span></h3>
+                <div class="orders-list">
+                    <h4 style="font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase;">Your Orders</h4>
+                    <div id="ordersList"></div>
+                </div>
+                <button onclick="handleLogout()" class="btn-primary" style="margin-top: 30px;">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-header">
+            <h2>Shopping Bag</h2>
+            <span class="modal-close" onclick="closeCart()">×</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-state">
+                <h3>Your shopping bag is empty</h3>
+                <p style="font-size: 12px;">Add items to get started</p>
+            </div>
+        </div>
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-images">
+                <img src="images/eyewearsunintro.png" alt="eyewearsunintro">
+            </div>
+        </div>
+        <div class="hero-text">
+            <p>HIGHLIGHTS</p>
+            <h1>Valentine’s Gaze</h1>
+            <a href="#products" class="discover-btn">DISCOVER</a>
+        </div>
+    </section>
+
+    <section class="section" id="products">
+        <h2 class="section-title">Sunglasses Selection</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/cat31.png" alt="cat123">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Cat Eye Sunglasses</h3>
+                    <p class="product-price">₹ 20,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/butterfly.png" alt="butterfly">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Butterfly Sunglasses</h3>
+                    <p class="product-price">₹ 25,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/squre.png" alt="squre">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Square Sunglasses</h3>
+                    <p class="product-price">₹ 30,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/oval.png" alt="oval">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Oval Sunglasses</h3>
+                    <p class="product-price">₹ 30,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/shieldglasses.png" alt="shieldglasses">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Shield Sunglasses</h3>
+                    <p class="product-price">₹ 32,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/pilot.png" alt="pilot">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Piolt Sunglasses</h3>
+                    <p class="product-price">₹ 31,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/rectangular.png" alt="rectangular">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Rectangle Sunglasses</h3>
+                    <p class="product-price">₹ 29,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="products">
+        <h2 class="section-title">Optical Selection</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass1.jpg" alt="eyeglass1">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Pantos Eyeglasses</h3>
+                    <p class="product-price">₹ 20,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass2.jpg" alt="eyeglass2">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Square Eyeglasses</h3>
+                    <p class="product-price">₹ 25,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass3.jpg" alt="eyeglass3">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Oval Eyeglasses</h3>
+                    <p class="product-price">₹ 30,500</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass4.jpg" alt="eyeglass4">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Rectangle Eyeglasses</h3>
+                    <p class="product-price">₹ 30,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass5.jpg" alt="eyeglass5">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Butterfly Eyeglasses</h3>
+                    <p class="product-price">₹ 32,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass6.jpg" alt="eyeglass6">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Square Eyeglasses</h3>
+                    <p class="product-price">₹ 31,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/eyeglass7.jpg" alt="eyeglass7">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"> Rectangle Eyeglasses</h3>
+                    <p class="product-price">₹ 29,999</p>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-section">
+        <div class="banner-item">
+            <img src="images/sunglasses456.jpg" alt="sunglasses456">
+            <div class="banner-content">
+                <h2>All Sunglasses</h2>
+                <a href="#" class="discover-btn">DISCOVER</a>
+            </div>
+        </div>
+
+        <div class="banner-item">
+            <img src="images/optical.jpg" alt="optical">
+            <div class="banner-content">
+                <h2>All Optical</h2>
+                <a href="#" class="discover-btn">DISCOVER</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter fade-in">
+        <h2>Subscribe to our Newsletter</h2>
+        <p>Get the latest updates on new products and upcoming sales</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>The House</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sustainable</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Room</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Book an Appointment</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Personal Shopper</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ÉLITE BEAUTÉ. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">📷</a>
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📺</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

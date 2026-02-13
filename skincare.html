@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE BEAUTÉ - Ultra Luxury Beauty Maison</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="s.css">
+</head>
+<body>
+    <header>
+        <div class="top-banner">
+            COMPLIMENTARY SHIPPING AND RETURNS ON ALL ORDERS
+        </div>
+        <div class="header-main">
+            <div class="logo">ÉLITE BEAUTÉ</div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Fashion</a></li>
+                    <li><a href="fragrance.html">Fragrance</a></li>
+                    <li><a href="makeup.html">Makeup</a></li>
+                    <li><a href="skincare.html">Skincare</a></li>
+                    <li><a href="eyewear.html">EyeWear</a></li>
+                    <li><a href="watchesandjwellery.html">Watches & Jewelry</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <span class="header-icon" onclick="openSearch()">🔍</span>
+                <span class="header-icon" onclick="openUser()">👤</span>
+                <span class="header-icon" onclick="openCart()">🛒</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <span class="search-close" onclick="closeSearch()">×</span>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput" oninput="performSearch()">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <div class="user-modal" id="userModal">
+        <div class="modal-header">
+            <h2>My Account</h2>
+            <span class="modal-close" onclick="closeUser()">×</span>
+        </div>
+        <div class="modal-content">
+
+            <div id="loginForm">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="userPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Don't have an account? <a href="#" onclick="showRegister(); return false;" style="text-decoration: underline;">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Already have an account? <a href="#" onclick="showLogin(); return false;" style="text-decoration: underline;">Sign In</a>
+                </p>
+            </div>
+
+            <div class="user-info" id="userDashboard">
+                <h3 style="font-size: 18px; letter-spacing: 2px; margin-bottom: 20px;">Welcome, <span id="userName"></span></h3>
+                <div class="orders-list">
+                    <h4 style="font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase;">Your Orders</h4>
+                    <div id="ordersList"></div>
+                </div>
+                <button onclick="handleLogout()" class="btn-primary" style="margin-top: 30px;">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-header">
+            <h2>Shopping Bag</h2>
+            <span class="modal-close" onclick="closeCart()">×</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-state">
+                <h3>Your shopping bag is empty</h3>
+                <p style="font-size: 12px;">Add items to get started</p>
+            </div>
+        </div>
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+    <div class="topbanner">
+        Enjoy Complimentary delivery, samples and exclusive packaging.
+        <button class="close-banner"onclick="this.parentElement.style.display='none'"></button>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Valentine’s Glow</div>
+            <h1 class="hero-title">A Selection of Irresistible Skincare Products</h1>
+            <a href="#essentials" class="discover-btn">Discover</a>
+        </div>
+        <div class="hero-image">
+            <img src="images/skinbg1.png" alt="skinbg1">
+        </div>
+    </section>
+
+    <section class="essentials" id="essentials">
+        <h2 class="section-title">THE ESSENTIALS</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="product-badge">New</span>
+                <div class="product-image">
+                    <img src="images/patches1.jpg" alt="patches1">
+                </div>
+                <h3 class="product-name">ÉCLAT EYE PATCHES</h3>
+                <p class="product-description">Instant-cooling hydrogel patches that brighten, smooth, and awaken tired eyes in minutes.</p>
+                <div class="product-price">₹ 6,999</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/fserum11.png" alt="fserum11">
+                </div>
+                <h3 class="product-name">LUMIÈRE ESSENCE Face Serum</h3>
+                <p class="product-description">A lightweight luxury serum that deeply hydrates, smooths texture, and reveals radiant skin.</p>
+                <div class="product-price">₹ 5,999</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/lotion1.png" alt="lotion1">
+                </div>
+                <h3 class="product-name">Velouré Silk Lotion</h3>
+                <p class="product-description">A feather-light, silk-infused lotion that melts into skin for all-day radiance.</p>
+                <div class="product-price">₹ 4,999</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/tonar1.png" alt="tonar1">
+                </div>
+                <h3 class="product-name">Lumière Balance Toner</h3>
+                <p class="product-description">An alcohol-free refining toner that restores pH and enhances natural glow.</p>
+                <div class="product-price">₹ 7,999</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/cleanser15.png" alt="cleanser15">
+                </div>
+                <h3 class="product-name">Velvet Purité Cleanser</h3>
+                <p class="product-description">A gentle yet powerful cleanser that purifies skin without stripping moisture.</p>
+                <div class="product-price">₹ 6,550</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/mois122.png" alt="mois122">
+                </div>
+                <h3 class="product-name">Opaline Hydra Moisturizerr</h3>
+                <p class="product-description">A luxurious daily moisturizer delivering deep hydration with a silky finish.</p>
+                <div class="product-price">₹ 6,250</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/uve1222.png" alt="uve1222">
+                </div>
+                <h3 class="product-name">Noir Défense UV Essence (SPF 50+)</h3>
+                <p class="product-description">A weightless UV essential that protects, hydrates, and brightens skin seamlessly.</p>
+                <div class="product-price">₹ 8,250</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/night123.png" alt="night123">
+                </div>
+                <h3 class="product-name">Midnight Repair Night Cream</h3>
+                <p class="product-description">A rich overnight cream that repairs, nourishes, and restores youthful skin by morning.</p>
+                <div class="product-price">₹ 7,250</div>
+                <a href="#" class="shop-btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+ 
+    <section class="featured-product">
+        <div class="featured-image">
+            <img src="images/renewalc1.png" alt="renewalc1">
+        </div>
+        <div class="featured-content">
+            <div class="featured-label">Valentine’s Glow</div>
+            <h2 class="featured-title">Supreme Renewal Cream</h2>
+            <a href="#" class="discover-btn">Discover</a>
+        </div>
+    </section>
+
+    <section class="featured-product reverse">
+        <div class="featured-image">
+            <img src="images/eyecream2.png" alt="eyecream2">
+        </div>
+        <div class="featured-content">
+            <div class="featured-label">Valentine’s Glow</div>
+            <h2 class="featured-title">Lumière Contour Eye Cream</h2>
+            <a href="#" class="discover-btn">Discover</a>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h2 class="section-title">SHOP BY CATEGORY</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="images/clean123456.png" alt="clean123456">
+                </div>
+                <h3 class="category-name">Cleansers</h3>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="images/moiscu123456789.png" alt="moiscu123456789">
+                </div>
+                <h3 class="category-name">Moisturizer</h3>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="images/serum30.png" alt="serum30">
+                </div>
+                <h3 class="category-name">Serums</h3>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="images/eyeandlipcare12.png" alt="eyeandlipcare12">
+                </div>
+                <h3 class="category-name">Eye & Lip Care</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="gift-finder">
+        <div class="gift-finder-image">
+            <img src="images/giftfinder1.png" alt="giftfinder1">
+        </div>
+        <div class="gift-finder-content">
+            <h2 class="gift-finder-title">THE ÉLITE BEAUTÉ GIFT FINDER</h2>
+            <p class="gift-finder-subtitle">find a gem of a gift in seconds.</p>
+            <a href="#" class="discover-btn">DISCOVER</a>
+        </div>
+    </section>
+
+    <section class="newsletter fade-in">
+        <h2>Subscribe to our Newsletter</h2>
+        <p>Get the latest updates on new products and upcoming sales</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>The House</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sustainable</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Room</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Book an Appointment</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Personal Shopper</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ÉLITE BEAUTÉ. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">📷</a>
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📺</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
