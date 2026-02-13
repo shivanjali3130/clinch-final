@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE BEAUTÉ - Ultra Luxury Beauty Maison</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="wj.css">
+</head>
+<body>
+    <header>
+        <div class="top-banner">
+            COMPLIMENTARY SHIPPING AND RETURNS ON ALL ORDERS
+        </div>
+        <div class="header-main">
+            <div class="logo">ÉLITE BEAUTÉ</div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Fashion</a></li>
+                    <li><a href="fragrance.html">Fragrance</a></li>
+                    <li><a href="makeup.html">Makeup</a></li>
+                    <li><a href="skincare.html">Skincare</a></li>
+                    <li><a href="eyewear.html">EyeWear</a></li>
+                    <li><a href="watchesandjwellery.html">Watches & Jewelry</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <span class="header-icon" onclick="openSearch()">🔍</span>
+                <span class="header-icon" onclick="openUser()">👤</span>
+                <span class="header-icon" onclick="openCart()">🛒</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="search-modal" id="searchModal">
+        <span class="search-close" onclick="closeSearch()">×</span>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput" oninput="performSearch()">
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <div class="user-modal" id="userModal">
+        <div class="modal-header">
+            <h2>My Account</h2>
+            <span class="modal-close" onclick="closeUser()">×</span>
+        </div>
+        <div class="modal-content">
+
+            <div id="loginForm">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="userPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Don't have an account? <a href="#" onclick="showRegister(); return false;" style="text-decoration: underline;">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 12px;">
+                    Already have an account? <a href="#" onclick="showLogin(); return false;" style="text-decoration: underline;">Sign In</a>
+                </p>
+            </div>
+
+            <div class="user-info" id="userDashboard">
+                <h3 style="font-size: 18px; letter-spacing: 2px; margin-bottom: 20px;">Welcome, <span id="userName"></span></h3>
+                <div class="orders-list">
+                    <h4 style="font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase;">Your Orders</h4>
+                    <div id="ordersList"></div>
+                </div>
+                <button onclick="handleLogout()" class="btn-primary" style="margin-top: 30px;">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="modal-header">
+            <h2>Shopping Bag</h2>
+            <span class="modal-close" onclick="closeCart()">×</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-state">
+                <h3>Your shopping bag is empty</h3>
+                <p style="font-size: 12px;">Add items to get started</p>
+            </div>
+        </div>
+        <div class="cart-summary" id="cartSummary" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn-primary" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+    <div class="topbanner">
+        Enjoy Complimentary delivery, samples and exclusive packaging.
+        <button class="close-banner"onclick="this.parentElement.style.display='none'"></button>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-images">
+                <img src="images/watchesandjwell123456.png" alt="watchesandjwell123456">
+            </div>
+        </div>
+        <div class="hero-text">
+            <p>HIGHLIGHTS</p>
+            <h1>Valentine’s Timeless Brilliance</h1>
+            <a href="#watches" class="discover-btn">Explore Watches</a>
+            <a href="#fine-jewelry" class="discover-btn">Discover Jewellery</a>
+        </div>
+    </section>
+ 
+    <nav class="wj-category-nav">
+        <ul>
+            <li><a href="#watches" class="active">Watches</a></li>
+            <li><a href="#fine-jewelry" >Fine Jewellery</a></li>
+            <li><a href="#high-jewelry" >High Jewellery</a></li>
+        </ul>
+    </nav>
+    
+    <section class="wj-section" id="watches">
+        <div class="wj-section-header">
+            <p class="wj-section-subtitle">ÉLITE BEAUTÉ Watches</p>
+            <h2 class="wj-section-title">Eternal TIME</h2>
+            <p class="wj-section-description">Luxury watches where refined design meets flawless craftsmanship.</p>
+        </div>
+    </section>
+    
+    <div class="wj-watches-grid">
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch1.jpg" alt="watch1">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Majesté Timepiece</h3>
+            <p class="wj-watches-collection">Majesté Royale Collection</p>
+            <div class="wj-watch-price">₹ 50,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch2.jpg" alt="watch2">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Signature Élégance</h3>
+            <p class="wj-watches-collection">Signature Élégance Timeless Series</p>
+            <div class="wj-watch-price">₹ 45,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch3.png" alt="watch3">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Impéria Chrono</h3>
+            <p class="wj-watches-collection">Impéria Chrono Prestige Collection</p>
+            <div class="wj-watch-price">₹ 42,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch4.png" alt="watch4">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Lumière Royale Watch</h3>
+            <p class="wj-watches-collection">Lumière Royale Prestige Series</p>
+            <div class="wj-watch-price">₹ 40,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch5.png" alt="watch5">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Timeless Éclat</h3>
+            <p class="wj-watches-collection">Timeless Éclat Prestige Seriess</p>
+            <div class="wj-watch-price">₹ 47,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+        <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch6.png" alt="watch6">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Prestige Crown</h3>
+            <p class="wj-watches-collection">Prestige Crown Royale Collection</p>
+            <div class="wj-watch-price">₹ 55,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+         <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch7.png" alt="watch7">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Héritage Luxe</h3>
+            <p class="wj-watches-collection">Héritage Luxe Prestige Series</p>
+            <div class="wj-watch-price">₹ 55,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+
+         <div class="wj-watch-card">
+            <div class="wj-watch-image-container">
+                <img src="images/watch8.png" alt="watch8">
+            </div>
+            <h3 class="wj-watch-name">ÉLITE BEAUTÉ – Velour Temps</h3>
+            <p class="wj-watches-collection">Velour Temps Prestige Series</p>
+            <div class="wj-watch-price">₹ 52,000</div>
+            <a href="#" class="wj-watch-link">View Details</a>
+            <a href="#" class="shop-btn">SHOP NOW</a>
+        </div>
+    </div>
+    
+    <section class="wj-section" id="fine-jewelry">
+        <div class="wj-section-header">
+            <p class="wj-section-subtitle">ÉLITE BEAUTÉ Fine Jewellery</p>
+            <h2 class="wj-section-title">Couture Jewellery</h2>
+            <p class="wj-section-description">Fashion-house inspired jewellery where precision design meets luminous elegance.</p>
+        </div>
+
+        <div class="wj-jewelry-grid">
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine1.png" alt="fine1">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Lumière Royale Necklace</h3>
+                    <p class="wj-jewelry-material">18K Gold Plated Brass with Cubic Zirconia</p>
+                    <div class="wj-jewelry-price">₹ 18,999</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine2.png" alt="fine2">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Signature Élégance Ring</h3>
+                    <p class="wj-jewelry-material">Sterling Silver 925 with Micro Crystal Stones</p>
+                    <div class="wj-jewelry-price">₹ 9,999</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine3.png" alt="fine3">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Rosé Impéria Earrings</h3>
+                    <p class="wj-jewelry-material">Rose Gold Plated Alloy with Swarovski Crystals</p>
+                    <div class="wj-jewelry-price">₹ 7,499</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine4.png" alt="fine4">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Prestige Crown Bracelets</h3>
+                    <p class="wj-jewelry-material">18K Gold Plated Stainless Steel with CZ Diamonds</p>
+                    <div class="wj-jewelry-price">₹ 12,999</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine6.png" alt="fine6">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Timeless Éclat Pendant</h3>
+                    <p class="wj-jewelry-material">White Gold Finish Brass with High-Grade Zircon</p>
+                    <div class="wj-jewelry-price">₹ 10,999</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+
+            <div class="wj-jewelry-card">
+                <div class="wj-jewelry-image-wrapper">
+                    <img src="images/fine5.png" alt="fine5">
+                </div>
+                <div class="wj-jewelry-info">
+                    <p class="wj-jewelry-collection-name">Eternal Brilliance Collection</p>
+                    <h3 class="wj-jewelry-name">Majesté Diamond Choker</h3>
+                    <p class="wj-jewelry-material">Premium Rhodium Plated Silver with AAA Cubic Zirconia</p>
+                    <div class="wj-jewelry-price">₹ 24,999</div>
+                    <a href="#" class="shop-btn">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wj-section" id="high-jewellery">
+        <div class="wj-section-header">
+            <p class="wj-section-subtitle">ÉLITE BEAUTÉ High Jewellry</p>
+            <h2 class="wj-section-title">Exceptional Savoir-Faire</h2>
+            <p class="wj-section-description">Exceptional masterpieces crafted in precious metals and radiant stones, designed for timeless prestige and rare elegance.</p>
+        </div>
+    </section>
+
+    <div class="wj-high-jewelry-showcase">
+        <div class="wj-high-jewelry-image">
+            <img src="images/high1.png" alt="high1">
+        </div>
+        <div class="wj-high-jewelry-content">
+            <p class="wj-high-jewelry-label">Signature High Jewellery</p>
+            <h2 class="wj-high-jewelry-title">Lumière Royale Diamond Necklace</h2>
+            <p class="wj-high-jewelry-description">A radiant statement necklace designed to capture timeless elegance with couture brilliance.</p>
+            <ul class="wj-high-jewelry-features">
+                <li>18K gold finish</li>
+                <li>Hand-set AAA cubic zirconia stones</li>
+                <li>Adjustable luxury clasp</li>
+                <li>High-shine polish for red-carpet glow</li>
+            </ul>
+            <a href="#" class="discover-btn">Discover High Jewellery</a>
+        </div>
+    </div>
+
+    <div class="wj-high-jewelry-showcase">
+        <div class="wj-high-jewelry-image">
+            <img src="images/high2.png" alt="high2">
+        </div>
+        <div class="wj-high-jewelry-content">
+            <p class="wj-high-jewelry-label">Crown Edition</p>
+            <h2 class="wj-high-jewelry-title">Majesté Imperial Ring</h2>
+            <p class="wj-high-jewelry-description">A regal cocktail ring crafted to embody power, prestige, and modern royalty.</p>
+            <ul class="wj-high-jewelry-features">
+                <li>Sterling Silver 925 base</li>
+                <li>Central emerald-cut crystal</li>
+                <li>Micro-pavé detailin</li>
+                <li>Tarnish-resistant coating</li>
+            </ul>
+            <a href="#" class="discover-btn">Discover High Jewellery</a>
+        </div>
+    </div>
+
+    <div class="wj-high-jewelry-showcase">
+        <div class="wj-high-jewelry-image">
+            <img src="images/high3.png" alt="high3">
+        </div>
+        <div class="wj-high-jewelry-content">
+            <p class="wj-high-jewelry-label">Haute Couture Jewels</p>
+            <h2 class="wj-high-jewelry-title">Rosé Éternelle Drop Earrings</h2>
+            <p class="wj-high-jewelry-description">Elegant drop earrings that deliver soft romance with high-fashion refinement.</p>
+            <ul class="wj-high-jewelry-features">
+                <li>Rose gold plated finish</li>
+                <li>Swarovski-grade crystals</li>
+                <li>Lightweight couture design</li>
+                <li>Secure luxury back locks</li>
+            </ul>
+            <a href="#" class="discover-btn">Discover High Jewellery</a>
+        </div>
+    </div>
+
+    <div class="wj-high-jewelry-showcase">
+        <div class="wj-high-jewelry-image">
+            <img src="images/high4.png" alt="high4">
+        </div>
+        <div class="wj-high-jewelry-content">
+            <p class="wj-high-jewelry-label">Prestige Collection</p>
+            <h2 class="wj-high-jewelry-title">Timeless Éclat Tennis Bracelet</h2>
+            <p class="wj-high-jewelry-description">A classic tennis bracelet reimagined with modern brilliance and elite craftsmanship.</p>
+            <ul class="wj-high-jewelry-features">
+                <li>Rhodium plated premium alloy</li>
+                <li>Continuous zircon stone setting</li>
+                <li>Flexible comfort fit</li>
+                <li>High-lustre mirror polish</li>
+            </ul>
+            <a href="#" class="discover-btn">Discover High Jewellery</a>
+        </div>
+    </div>
+
+    <div class="wj-high-jewelry-showcase">
+        <div class="wj-high-jewelry-image">
+            <img src="images/high5.png" alt="high5">
+        </div>
+        <div class="wj-high-jewelry-content">
+            <p class="wj-high-jewelry-label">Icon Series</p>
+            <h2 class="wj-high-jewelry-title">Signature Élégance Pendant</h2>
+            <p class="wj-high-jewelry-description">A minimalist high jewellery pendant crafted for everyday luxury and refined glow.</p>
+            <ul class="wj-high-jewelry-features">
+                <li>White gold finish</li>
+                <li>Solitaire zircon centerpiece</li>
+                <li>Adjustable fine chain</li>
+                <li>Hypoallergenic materials</li>
+            </ul>
+            <a href="#" class="discover-btn">Discover High Jewellery</a>
+        </div>
+    </div>
+
+
+
+        <section class="newsletter fade-in">
+        <h2>Subscribe to our Newsletter</h2>
+        <p>Get the latest updates on new products and upcoming sales</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>The House</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sustainable</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Room</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Book an Appointment</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Personal Shopper</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ÉLITE BEAUTÉ. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">📷</a>
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📺</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

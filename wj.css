@@ -1,0 +1,1037 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+header{
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-banner{
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.header-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.logo{
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #000;
+}
+
+.main-nav{
+    display: flex;
+    gap: 45px;
+    list-style: none;
+}
+
+.main-nav a{
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    position: relative;
+}
+
+.main-nav a::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #000;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+
+.main-nav a:hover::after{
+    width: 100%;
+}   
+
+.header-right{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header-icon{
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.header-icon:hover{
+    opacity: 0.7;
+}
+
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 2000;
+    padding: 100px 40px;
+}
+.search-modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.search-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-size: 32px;
+    padding: 20px 0;
+    outline: none;
+    letter-spacing: 2px;
+}
+
+.search-close {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.search-results {
+    margin-top: 40px;
+    color: #fff;
+}
+
+.search-result-item {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-result-item:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.user-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    background: #fff;
+    z-index: 2000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.4s;
+    overflow-y: auto;
+}
+
+.user-modal.active {
+    display: block;
+    right: 0;
+}
+
+.modal-header {
+    padding: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.modal-close {
+    font-size: 30px;
+    cursor: pointer;
+    color: #000;
+}
+
+.modal-content {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.btn-primary {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #333;
+}
+
+.user-info {
+    display: none;
+}
+
+.user-info.active {
+    display: block;
+}
+
+.orders-list {
+    margin-top: 30px;
+ }
+
+.order-item {
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 15px;
+}
+
+.order-item h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    background: #fff;
+    z-index: 2000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.4s;
+    overflow-y: auto;
+}
+
+.cart-modal.active {
+    display: block;
+    right: 0;
+}
+
+.cart-items {
+    padding: 30px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h4 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.cart-item-price {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.cart-summary {
+    padding: 30px;
+    border-top: 2px solid #000;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f8f8f8; /* Fallback color */
+}
+
+.hero-content {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.hero-text{
+   position: absolute;
+   bottom: 80px;
+   left: 50%;
+   transform: translateX(-50%);
+   text-align: center;
+   color: #666;
+   z-index: 2; 
+}
+
+.hero-text p {
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.discover-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 2px solid #000;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.discover-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.hero-images{
+    position: absolute;
+    top: 45px;
+    left: -40px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+}
+
+.hero-images img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; 
+}
+
+.wj-category-nav{
+    background: #000;
+    color: #fff;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.wj-category-nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.wj-category-nav li{
+    flex: 1;
+}
+
+.wj-category-nav a{
+    color: #fff;
+    text-decoration: none;
+    padding: 25px 40px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.wj-category-nav a:hover,
+.wj-category-nav a.active{
+    border-bottom-color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+.wj-section{
+    padding: 120px 60px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.wj-section-header{
+    text-align: center;
+    margin-bottom: 0 auto;
+}
+
+.wj-section-subtitle{
+    font-size: 15px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.wj-section-title{
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.wj-section-description{
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #666;
+    font-weight: 300;
+}
+
+.wj-watches-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 100px;
+    margin-bottom: 80px;
+}
+
+.wj-watch-card{
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.wj-watch-card:hover{
+    transform: translateY(-15px);
+}
+
+.wj-watch-image-container{
+    background: #f8f8f8;
+    padding: 80px 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wj-watch-image-container img{
+    width: 100%;
+    max-width: 250px;
+    transition: transform 0.6s ease;
+}
+
+.wj-watch-image-container img,
+.wj-watch-card:hover{
+    transform: scale(1.08);
+}
+
+.wj-watch-name{
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.wj-watches-collection{
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.wj-watch-price{
+font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.wj-watch-link{
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap:5px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+    transition: gap 0.3s;
+}
+
+.wj-watch-link:hover{
+    gap: 10px;
+}
+
+.shop-btn{
+    padding: 12px 30px;
+    background: #fff;
+    color: #000;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.shop-btn:hover {
+    background: #fff;
+     color: #000;
+}
+
+.wj-jewelry-grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 80px;
+    margin-bottom: 80px;
+}
+
+.wj-jewelry-card{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fff;
+}
+
+.wj-jewelry-card:hover{
+    opacity: 1;
+}
+
+.wj-jewelry-image-wrapper{
+    position: relative;
+    background: #fafafa;
+    padding: 100px 60px;
+    text-align: center;
+}
+
+.wj-jewelry-image-wrapper img{
+    width: 100%;
+    max-width: 350px;
+    transition: transform 0.6s ease;
+}
+
+.wj-jewelry-card:hover,
+.wj-jewelry-image-wrapper img{
+    transform: scale(1.05);
+}
+
+.wj-jewelry-info{
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.wj-jewelry-collection-name{
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.wj-jewelry-name{
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.wj-jewelry-material{
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.wj-jewelry-price{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+
+.wj-high-jewelry-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 30px auto;
+    max-width: 1200px; 
+}
+
+.wj-high-jewelry-image {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wj-high-jewelry-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.wj-high-jewelry-content {
+    background: #000;
+    color: #fff;
+    padding: 40px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wj-high-jewelry-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wj-high-jewelry-title {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wj-high-jewelry-description {
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    font-weight: 300;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wj-high-jewelry-features {
+    list-style: none;
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+.wj-high-jewelry-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wj-high-jewelry-features li:last-child {
+    border-bottom: none;
+}
+
+.discover-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.discover-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+
+@media (max-width: 1024px) {
+    .wj-high-jewelry-showcase {
+        max-width: 650px;
+    }
+
+    .wj-high-jewelry-content {
+        padding: 35px 40px;
+    }
+
+    .wj-high-jewelry-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wj-high-jewelry-showcase {
+        grid-template-columns: 1fr;
+        margin: 20px 15px;
+        max-width: 100%;
+    }
+
+    .wj-high-jewelry-image {
+        min-height: 300px;
+        order: 1;
+    }
+
+    .wj-high-jewelry-content {
+        padding: 30px 25px;
+        order: 2;
+    }
+
+    .wj-high-jewelry-title {
+        font-size: 16px;
+    }
+
+    .wj-high-jewelry-description {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wj-high-jewelry-showcase {
+        margin: 15px 10px;
+    }
+
+    .wj-high-jewelry-image {
+        min-height: 250px;
+    }
+
+    .wj-high-jewelry-content {
+        padding: 25px 20px;
+    }
+
+    .wj-high-jewelry-title {
+        font-size: 15px;
+    }
+
+    .wj-high-jewelry-features li {
+        font-size: 9px;
+    }
+
+    .discover-btn {
+        font-size: 8px;
+        padding: 10px 24px;
+    }
+}
+
+
+.newsletter{
+    background: #f5f5f5;
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.newsletter h2{
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.newsletter p{
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.newsletter-form{
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}
+
+.newsletter-form input{
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 15px 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+.newsletter-form button{
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: remopointer;
+    transition: background 0.3s;
+}
+
+.newsletter-form button:hover{
+    background: #333;
+}
+
+footer{
+    background: #000;
+    color: #fff;
+    padding: 80px 40px 40px;
+}
+
+.footer-content{
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-column h4{
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.footer-column ul{
+    list-style: none;
+}
+
+.footer-column li{
+    margin-bottom: 15px;
+}
+
+.footer-column a{
+    color: #ccc;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover{
+    color: #fff;
+}
+
+.footer-bottom{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 40px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #999;
+}
+
+.social-links{
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a{
+    color: #fff;
+    font-size: 20px;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover{
+    opacity: 0.6;
+}
+
+ @media (max-width: 1024px) {
+            .category-grid,
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-product {
+                grid-template-columns: 1fr;
+            }
+
+            .product-video-container {
+                height: 500px;
+            }
+
+            .video-product-overlay h2 {
+                font-size: 36px;
+                letter-spacing: 6px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none;
+            }
+
+            .video-overlay {
+                left: 30px;
+                bottom: 40px;
+            }
+
+            .video-overlay h1 {
+                font-size: 36px;
+            }
+
+            .category-grid,
+            .product-grid,
+            .services,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .product-video-container {
+                height: 400px;
+            }
+
+            .video-product-overlay h2 {
+                font-size: 28px;
+                letter-spacing: 4px;
+            }
+
+            .video-placeholder-product {
+                font-size: 100px;
+            }
+        }
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s, transform 0.8s;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
